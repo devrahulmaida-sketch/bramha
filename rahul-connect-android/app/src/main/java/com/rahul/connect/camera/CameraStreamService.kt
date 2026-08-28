@@ -16,9 +16,7 @@ import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.NotificationCompat
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LifecycleRegistry
+import androidx.lifecycle.LifecycleService
 import android.util.Base64
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.Executors
@@ -27,10 +25,7 @@ import java.util.concurrent.Executors
  * Streams the back camera as base64-JPEG `camera_frame` messages to the PC
  * (~10 fps, 640px long edge) while Rahul AI's holographic viewer is open.
  */
-class CameraStreamService : Service(), LifecycleOwner {
-
-    private val lifecycleRegistry = LifecycleRegistry(this)
-    override val lifecycle: Lifecycle get() = lifecycleRegistry
+class CameraStreamService : LifecycleService() {
 
     private var cameraProvider: ProcessCameraProvider? = null
     private val analysisExecutor = Executors.newSingleThreadExecutor()
@@ -38,7 +33,6 @@ class CameraStreamService : Service(), LifecycleOwner {
 
     override fun onCreate() {
         super.onCreate()
-        lifecycleRegistry.handleEvent(Lifecycle.Event.ON_CREATE)
         createChannel()
     }
 
@@ -70,8 +64,6 @@ class CameraStreamService : Service(), LifecycleOwner {
             try {
                 val provider = future.get()
                 cameraProvider = provider
-                lifecycleRegistry.handleEvent(Lifecycle.Event.ON_START)
-                lifecycleRegistry.handleEvent(Lifecycle.Event.ON_RESUME)
 
                 val analysis = ImageAnalysis.Builder()
                     .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
@@ -125,8 +117,6 @@ class CameraStreamService : Service(), LifecycleOwner {
             cameraProvider?.unbindAll()
         } catch (t: Throwable) {
         }
-        lifecycleRegistry.handleEvent(Lifecycle.Event.ON_PAUSE)
-        lifecycleRegistry.handleEvent(Lifecycle.Event.ON_STOP)
         stopForeground(STOP_FOREGROUND_REMOVE)
         stopSelf()
     }
@@ -137,11 +127,9 @@ class CameraStreamService : Service(), LifecycleOwner {
         } catch (t: Throwable) {
         }
         analysisExecutor.shutdown()
-        lifecycleRegistry.handleEvent(Lifecycle.Event.ON_DESTROY)
         super.onDestroy()
     }
 
-    override fun onBind(intent: Intent?): IBinder? = null
 
     private fun buildNotification(): Notification =
         NotificationCompat.Builder(this, CHANNEL_ID)

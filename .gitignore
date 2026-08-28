@@ -50,3 +50,10 @@ dist/
 
 # Rahul Connect runtime device registry
 config/rahul_connect/devices.json
+
+# Android build artifacts
+rahul-connect-android/.gradle/
+rahul-connect-android/app/build/
+rahul-connect-android/build/
+rahul-connect-android/local.properties
+releases/
