@@ -1,7 +1,7 @@
 import os
 import re
 
-file_path = r"d:\TiTech Prabha Solution\Brahma Echo\Brahma Echo\Brahma Echo-AI---Lite-main\Brahma Echo-AI---Lite-main\ui.py"
+file_path = r"d:\TiTech Prabha Solution\Rahul AI\Rahul AI\Rahul AI-AI---Lite-main\Rahul AI-AI---Lite-main\ui.py"
 with open(file_path, "r", encoding="utf-8") as f:
     text = f.read()
 
@@ -53,7 +53,7 @@ new_class = """class RemoteKeyOverlay(QWidget):
         title.setStyleSheet("color: #ffffff; background: transparent; border: none;")
         lay.addWidget(title)
 
-        subtitle = QLabel("Scan the QR code with your phone to remotely control Brahma Echo.")
+        subtitle = QLabel("Scan the QR code with your phone to remotely control Rahul AI.")
         subtitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
         subtitle.setWordWrap(True)
         subtitle.setFont(QFont("Segoe UI", 9))
@@ -87,9 +87,9 @@ new_class = """class RemoteKeyOverlay(QWidget):
         self._key_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._key_lbl.setFont(QFont("Consolas", 36, QFont.Weight.Black))
         self._key_lbl.setStyleSheet(f\"\"\"
-            color: #ffaa30;
-            background: rgba(255, 170, 48, 0.05);
-            border: 1px solid rgba(255, 170, 48, 0.2);
+            color: #22d3ee;
+            background: rgba(34, 211, 238, 0.05);
+            border: 1px solid rgba(34, 211, 238, 0.2);
             border-radius: 16px;
             padding: 18px;
             letter-spacing: 14px;
@@ -120,9 +120,9 @@ new_class = """class RemoteKeyOverlay(QWidget):
                 border-radius: 12px;
             }}
             QPushButton:hover {{ 
-                background: rgba(255, 170, 48, 0.08); 
-                border: 1px solid rgba(255, 170, 48, 0.3);
-                color: #ffaa30;
+                background: rgba(34, 211, 238, 0.08); 
+                border: 1px solid rgba(34, 211, 238, 0.3);
+                color: #22d3ee;
             }}
         \"\"\")
         self._new_btn.clicked.connect(self._refresh_key)

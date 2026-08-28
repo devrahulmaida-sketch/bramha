@@ -1,6 +1,6 @@
 import re
 
-file_path = r'd:\TiTech Prabha Solution\Brahma Echo\Brahma Echo\Brahma Echo-AI---Lite-main\Brahma Echo-AI---Lite-main\ui.py'
+file_path = r'd:\TiTech Prabha Solution\Rahul AI\Rahul AI\Rahul AI-AI---Lite-main\Rahul AI-AI---Lite-main\ui.py'
 with open(file_path, 'r', encoding='utf-8') as f:
     text = f.read()
 
@@ -169,12 +169,12 @@ new_init = '''class FloatingLauncher(QWidget):
 
     def _get_accent_color(self):
         return {
-            "idle": "#ffaa30",
+            "idle": "#22d3ee",
             "listening": "#4ef0ff",
             "thinking": "#9fd8ff",
-            "executing": "#ffb14a",
+            "executing": "#67e8f9",
             "error": "#ff6b6b",
-        }.get(self._state, "#ffaa30")
+        }.get(self._state, "#22d3ee")
 
     def _hex_to_rgb(self, hex_color):
         hex_color = hex_color.lstrip('#')
@@ -198,7 +198,7 @@ old_apply = '''    def _apply_state_style(self):
             "idle": "#00BFFF",
             "listening": "#4ef0ff",
             "thinking": "#9fd8ff",
-            "executing": "#ffb14a",
+            "executing": "#67e8f9",
             "error": "#ff6b6b",
         }.get(state, "#00BFFF")
         glow = {
@@ -218,10 +218,10 @@ old_apply = '''    def _apply_state_style(self):
                 border: 1px solid {accent};
             }}
         \"\"\")
-        self.setToolTip(f"Brahma Echo\\n{self._status_line}")'''
+        self.setToolTip(f"Rahul AI\\n{self._status_line}")'''
 
 new_apply = '''    def _apply_state_style(self):
-        self.setToolTip(f"Brahma Echo\\n{self._status_line}")
+        self.setToolTip(f"Rahul AI\\n{self._status_line}")
         self.update()'''
 
 text = text.replace(old_apply, new_apply)

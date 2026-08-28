@@ -590,7 +590,7 @@ export function createOrbScene(container: HTMLElement): OrbSceneApi {
   dotC.width = dotC.height = 64;
   const dCtx = dotC.getContext("2d")!;
   const g = dCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
-  g.addColorStop(0, "rgba(255,170,48,1)");
+  g.addColorStop(0, "rgba(34,211,238,1)");
   g.addColorStop(0.2, "rgba(255,120,20,0.6)");
   g.addColorStop(0.5, "rgba(200,80,0,0.15)");
   g.addColorStop(1, "rgba(100,40,0,0)");

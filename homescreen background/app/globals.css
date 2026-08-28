@@ -74,7 +74,7 @@ body {
 .hud {
   position: fixed;
   z-index: 20;
-  color: #ffaa30;
+  color: #22d3ee;
   font-family: "Courier New", monospace;
   user-select: none;
 }
@@ -93,16 +93,16 @@ body {
   height: 44px;
   padding: 0 12px;
   background: rgba(20, 10, 0, 0.55);
-  border: 1px solid rgba(255, 170, 48, 0.45);
+  border: 1px solid rgba(34, 211, 238, 0.45);
   border-radius: 4px;
-  color: #ffaa30;
+  color: #22d3ee;
   font-family: "Courier New", monospace;
   font-size: 15px;
   font-weight: bold;
   letter-spacing: 0.08em;
   cursor: pointer;
   backdrop-filter: blur(2px);
-  text-shadow: 0 0 6px rgba(255, 170, 48, 0.7);
+  text-shadow: 0 0 6px rgba(34, 211, 238, 0.7);
   box-shadow: 0 0 12px rgba(255, 140, 20, 0.12) inset;
   transition:
     background 0.15s ease,
@@ -140,14 +140,14 @@ body {
   line-height: 1.7;
   letter-spacing: 0.1em;
   opacity: 0.55;
-  text-shadow: 0 0 8px rgba(255, 170, 48, 0.6);
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.6);
   pointer-events: none;
 }
 
 .hud-hint .key {
   display: inline-block;
   padding: 0 4px;
-  border: 1px solid rgba(255, 170, 48, 0.5);
+  border: 1px solid rgba(34, 211, 238, 0.5);
   border-radius: 3px;
   margin-right: 4px;
   font-size: 10px;
@@ -159,7 +159,7 @@ body {
   font-size: 13px;
   letter-spacing: 0.35em;
   opacity: 0.7;
-  text-shadow: 0 0 10px rgba(255, 170, 48, 0.8);
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
   pointer-events: none;
 }
 
@@ -169,7 +169,7 @@ body {
   margin-top: 6px;
   width: 120px;
   height: 1px;
-  background: linear-gradient(to right, rgba(255, 170, 48, 0.8), transparent);
+  background: linear-gradient(to right, rgba(34, 211, 238, 0.8), transparent);
 }
 
 .hud-error {
@@ -185,7 +185,7 @@ body {
   width: 208px;
   height: 156px;
   display: none;
-  border: 1px solid rgba(255, 170, 48, 0.45);
+  border: 1px solid rgba(34, 211, 238, 0.45);
   border-radius: 4px;
   overflow: hidden;
   background: #0a0500;
@@ -225,7 +225,7 @@ body {
   letter-spacing: 0.15em;
   color: #ffcc66;
   background: rgba(10, 5, 0, 0.65);
-  text-shadow: 0 0 6px rgba(255, 170, 48, 0.8);
+  text-shadow: 0 0 6px rgba(34, 211, 238, 0.8);
 }
 
 @media (max-width: 600px) {

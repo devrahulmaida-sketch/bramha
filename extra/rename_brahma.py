@@ -4,19 +4,19 @@ import re
 
 files_to_update = glob.glob('*.py') + glob.glob('**/*.html', recursive=True)
 
-pattern = re.compile(r'\bBrahma(?:\s*AI(?:\s*-\s*Lite|\s*Lite)?)?\b(?!\s*Echo)', re.IGNORECASE)
+pattern = re.compile(r'\bRahul(?:\s*AI(?:\s*-\s*Lite|\s*Lite)?)?\b(?!\s*Echo)', re.IGNORECASE)
 
 def replacer(match):
     text = match.group(0)
     if text.isupper():
-        return "BRAHMA ECHO"
+        return "RAHUL ECHO"
     elif text.islower():
-        return "brahma echo"
+        return "rahul ai"
     else:
-        return "Brahma Echo"
+        return "Rahul AI"
 
 for file_path in files_to_update:
-    if file_path == 'rename_brahma.py':
+    if file_path == 'rename_rahul.py':
         continue
     try:
         with open(file_path, 'r', encoding='utf-8') as f:

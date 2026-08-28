@@ -9,16 +9,16 @@ def fix_file(f, replacements):
         file.write(content)
 
 fix_file('main.py', [
-    ('brahma echo = BrahmaLive(', 'brahma_echo = BrahmaLive('),
-    ('brahma echo.plugin_manager', 'brahma_echo.plugin_manager'),
-    ('plugin_manager.register_brahma(brahma echo)', 'plugin_manager.register_brahma(brahma_echo)'),
-    ('plugin_manager.dispatch("on_startup", brahma echo)', 'plugin_manager.dispatch("on_startup", brahma_echo)'),
-    ('asyncio.run(brahma echo.run())', 'asyncio.run(brahma_echo.run())')
+    ('rahul ai = RahulLive(', 'rahul_ai = RahulLive('),
+    ('rahul ai.plugin_manager', 'rahul_ai.plugin_manager'),
+    ('plugin_manager.register_rahul(rahul ai)', 'plugin_manager.register_rahul(rahul_ai)'),
+    ('plugin_manager.dispatch("on_startup", rahul ai)', 'plugin_manager.dispatch("on_startup", rahul_ai)'),
+    ('asyncio.run(rahul ai.run())', 'asyncio.run(rahul_ai.run())')
 ])
 
 fix_file('plugin_manager.py', [
-    ('self.brahma echo', 'self.brahma_echo'),
-    ('brahma echo=self.brahma_echo', 'brahma_echo=self.brahma_echo')
+    ('self.rahul ai', 'self.rahul_ai'),
+    ('rahul ai=self.rahul_ai', 'rahul_ai=self.rahul_ai')
 ])
 
 print('Fixes applied!')

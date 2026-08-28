@@ -1,6 +1,6 @@
 import re
 
-file_path = r'd:\TiTech Prabha Solution\Brahma Echo\Brahma Echo\Brahma Echo-AI---Lite-main\Brahma Echo-AI---Lite-main\ui.py'
+file_path = r'd:\TiTech Prabha Solution\Rahul AI\Rahul AI\Rahul AI-AI---Lite-main\Rahul AI-AI---Lite-main\ui.py'
 with open(file_path, 'r', encoding='utf-8') as f:
     text = f.read()
 
@@ -26,7 +26,7 @@ or_prompt_code = '''
         self._or_prompt_widget.setStyleSheet("""
             QFrame {
                 background: rgba(8, 10, 16, 220);
-                border: 1px solid rgba(255, 170, 48, 0.15);
+                border: 1px solid rgba(34, 211, 238, 0.15);
                 border-radius: 20px;
             }
         """)
@@ -76,15 +76,15 @@ or_prompt_code = '''
         yes_btn.setFont(QFont("Segoe UI", 11, QFont.Weight.Bold))
         yes_btn.setStyleSheet("""
             QPushButton {
-                background: rgba(255, 170, 48, 0.1);
-                color: #ffaa30;
-                border: 1px solid rgba(255, 170, 48, 0.35);
+                background: rgba(34, 211, 238, 0.1);
+                color: #22d3ee;
+                border: 1px solid rgba(34, 211, 238, 0.35);
                 border-radius: 12px;
                 padding: 0 24px;
             }
             QPushButton:hover {
-                background: rgba(255, 170, 48, 0.2);
-                border: 1px solid rgba(255, 170, 48, 0.6);
+                background: rgba(34, 211, 238, 0.2);
+                border: 1px solid rgba(34, 211, 238, 0.6);
             }
         """)
         yes_btn.clicked.connect(self._show_or_input)
@@ -111,7 +111,7 @@ or_prompt_code = '''
         self._or_box.setStyleSheet("""
             QFrame {
                 background: rgba(8, 10, 16, 220);
-                border: 1px solid rgba(255, 170, 48, 0.2);
+                border: 1px solid rgba(34, 211, 238, 0.2);
                 border-radius: 20px;
             }
         """)
@@ -146,7 +146,7 @@ or_prompt_code = '''
                 letter-spacing: 1px;
             }
             QLineEdit:focus {
-                border: 1px solid rgba(255, 170, 48, 0.5);
+                border: 1px solid rgba(34, 211, 238, 0.5);
             }
         """)
         self._or_input.setText((self._defaults.get("openrouter_api_key") or "").strip())
@@ -172,15 +172,15 @@ or_prompt_code = '''
         or_save.setFont(QFont("Segoe UI", 11, QFont.Weight.Bold))
         or_save.setStyleSheet("""
             QPushButton {
-                background: rgba(255, 170, 48, 0.1);
-                color: #ffaa30;
-                border: 1px solid rgba(255, 170, 48, 0.35);
+                background: rgba(34, 211, 238, 0.1);
+                color: #22d3ee;
+                border: 1px solid rgba(34, 211, 238, 0.35);
                 border-radius: 12px;
                 padding: 0 24px;
             }
             QPushButton:hover {
-                background: rgba(255, 170, 48, 0.2);
-                border: 1px solid rgba(255, 170, 48, 0.6);
+                background: rgba(34, 211, 238, 0.2);
+                border: 1px solid rgba(34, 211, 238, 0.6);
             }
         """)
         or_save.clicked.connect(self._save_or_key)
@@ -196,7 +196,7 @@ or_prompt_code = '''
         self._show_intro_final()
 
     def _show_intro_final(self):
-        """Show the Brahma Echo intro sequence."""
+        """Show the Rahul AI intro sequence."""
         page = self._stack.widget(2)
         lay = page.layout()
         self._intro_widget.setParent(None)
@@ -223,7 +223,7 @@ text = text.replace(old_emit, new_emit)
 
 old_provider_row = '''    def _provider_row(self, name: str, key: str, model: str, setting_key: str):
         row = QFrame()
-        row.setStyleSheet("QFrame { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 14px; } QFrame:hover { background: rgba(255, 170, 48, 0.04); border: 1px solid rgba(255, 170, 48, 0.3); }")
+        row.setStyleSheet("QFrame { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 14px; } QFrame:hover { background: rgba(34, 211, 238, 0.04); border: 1px solid rgba(34, 211, 238, 0.3); }")
         r = QHBoxLayout(row)
         r.setContentsMargins(14, 12, 14, 12)
         r.setSpacing(12)
@@ -231,7 +231,7 @@ old_provider_row = '''    def _provider_row(self, name: str, key: str, model: st
         icon.setFixedSize(42, 42)
         icon.setAlignment(Qt.AlignmentFlag.AlignCenter)
         icon.setFont(QFont("Segoe UI", 13, QFont.Weight.Bold))
-        icon.setStyleSheet(f"background: rgba(255, 170, 48,0.12); color: {C.WHITE}; border: 1px solid rgba(255, 170, 48,0.38); border-radius: 21px;")
+        icon.setStyleSheet(f"background: rgba(34, 211, 238,0.12); color: {C.WHITE}; border: 1px solid rgba(34, 211, 238,0.38); border-radius: 21px;")
         r.addWidget(icon)
         meta = QVBoxLayout()
         title = QLabel(name)
@@ -264,7 +264,7 @@ new_provider_row = '''    def _provider_row(self, name: str, key: str, model: st
         if key:
             row.setStyleSheet("QFrame { background: rgba(55, 255, 95, 0.02); border: 1px solid rgba(55, 255, 95, 0.1); border-radius: 14px; } QFrame:hover { background: rgba(55, 255, 95, 0.05); border: 1px solid rgba(55, 255, 95, 0.25); }")
         else:
-            row.setStyleSheet("QFrame { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 14px; } QFrame:hover { background: rgba(255, 170, 48, 0.04); border: 1px solid rgba(255, 170, 48, 0.3); }")
+            row.setStyleSheet("QFrame { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 14px; } QFrame:hover { background: rgba(34, 211, 238, 0.04); border: 1px solid rgba(34, 211, 238, 0.3); }")
         r = QHBoxLayout(row)
         r.setContentsMargins(14, 12, 14, 12)
         r.setSpacing(12)
@@ -275,7 +275,7 @@ new_provider_row = '''    def _provider_row(self, name: str, key: str, model: st
         if key:
             icon.setStyleSheet(f"background: rgba(55, 255, 95, 0.12); color: {C.GREEN}; border: 1px solid rgba(55, 255, 95, 0.3); border-radius: 21px;")
         else:
-            icon.setStyleSheet(f"background: rgba(255, 170, 48, 0.12); color: {C.WHITE}; border: 1px solid rgba(255, 170, 48, 0.38); border-radius: 21px;")
+            icon.setStyleSheet(f"background: rgba(34, 211, 238, 0.12); color: {C.WHITE}; border: 1px solid rgba(34, 211, 238, 0.38); border-radius: 21px;")
         r.addWidget(icon)
         meta = QVBoxLayout()
         title = QLabel(name)
@@ -304,16 +304,16 @@ new_provider_row = '''    def _provider_row(self, name: str, key: str, model: st
             edit = QPushButton("Add API Key")
             edit.setStyleSheet("""
                 QPushButton {
-                    background: rgba(255, 170, 48, 0.1);
-                    color: #ffaa30;
-                    border: 1px solid rgba(255, 170, 48, 0.3);
+                    background: rgba(34, 211, 238, 0.1);
+                    color: #22d3ee;
+                    border: 1px solid rgba(34, 211, 238, 0.3);
                     border-radius: 12px;
                     padding: 10px 12px;
                     font-weight: bold;
                 }
                 QPushButton:hover {
-                    background: rgba(255, 170, 48, 0.2);
-                    border: 1px solid rgba(255, 170, 48, 0.5);
+                    background: rgba(34, 211, 238, 0.2);
+                    border: 1px solid rgba(34, 211, 238, 0.5);
                 }
             """)
         edit.clicked.connect(lambda: self._open_api_keys())

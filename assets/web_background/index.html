@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brahma Echo 3D WebGL Living AI Background</title>
+  <title>Rahul AI 3D WebGL Living AI Background</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; overflow: hidden; background: #050505; }
@@ -948,7 +948,7 @@
     const dCtx = dotC.getContext("2d");
     const g = dCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
     g.addColorStop(0, "rgba(255,215,0,1)");
-    g.addColorStop(0.25, "rgba(255,179,0,0.6)");
+    g.addColorStop(0.25, "rgba(34,211,238,0.6)");
     g.addColorStop(0.6, "rgba(170,128,16,0.25)");
     g.addColorStop(1, "rgba(85,63,5,0)");
     dCtx.fillStyle = g;
@@ -967,7 +967,7 @@
     const dustPoints = new THREE.Points(dustGeo, dustMat);
     orbGroup.add(dustPoints);
 
-    // ——— REACTIVE BRAHMA ECHO STATE CONTROLLER ———
+    // ——— REACTIVE RAHUL ECHO STATE CONTROLLER ———
     let currentState = "IDLE";
     let targetScale = 1.0;
     let currentScale = 1.0;
@@ -976,10 +976,10 @@
     let currentCameraZ = 5.8;
     let warpSpeed = 0;
 
-    window.setBrahmaState = function(state) {
+    window.setRahulState = function(state) {
       if (!state) return;
       currentState = String(state).toUpperCase();
-      console.log("Brahma Echo 3D StateChanged:", currentState);
+      console.log("Rahul AI 3D StateChanged:", currentState);
 
       if (currentState === "LISTENING") {
         targetScale = 1.30;

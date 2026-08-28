@@ -1,5 +1,5 @@
-import BrahmaOrb from "@/components/BrahmaOrb";
+import RahulOrb from "@/components/RahulOrb";
 
 export default function Home() {
-  return <BrahmaOrb />;
+  return <RahulOrb />;
 }

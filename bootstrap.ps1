@@ -14,15 +14,14 @@ $ErrorActionPreference = "Stop"
 $WorkingDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 Set-Location -Path $WorkingDir
 
-Write-Host "==========================================================================" -ForegroundColor Yellow
-Write-Host "  ____  ____      _    _   _ __  __    _      _    ___ " -ForegroundColor Yellow
-Write-Host " | __ )|  _ \    / \  | | | |  \/  |  / \    / \  |_ _|" -ForegroundColor Yellow
-Write-Host " |  _ \| |_) |  / _ \ | |_| | |\/| | / _ \  / _ \  | | " -ForegroundColor Yellow
-Write-Host " | |_) |  _ <  / ___ \|  _  | |  | |/ ___ \/ ___ \ | | " -ForegroundColor Yellow
-Write-Host " |____/|_| \_\/_/   \_\_| |_|_|  |_/_/   \_\_/   \_\___|" -ForegroundColor Yellow
-Write-Host ""
-Write-Host "                      PREMIUM LOADER" -ForegroundColor Green
-Write-Host "==========================================================================" -ForegroundColor Yellow
+==========================================================================
+    ____  ____    _    _   _  _____   _    ____   _   _
+   |  _ \|  _ \  / \  | \ | || ____| / \  |  _ \ / \ | |
+   | |_) | |_) |/ _ \ |  \| ||  _|  / _ \ | |_) / _ \| |
+   |  _ <|  _ <| ___ \| |\  || |___/ ___ \|  __/ ___ \ |__
+   |_| \_\_| \_\_|   \_\_| \_|_____/_/   \_\_| /_/   \_\___|
+                       P R E M I U M   L O A D E R
+==========================================================================
 Write-Host ""
 
 # 2. Helper to refresh environment variables
@@ -90,7 +89,7 @@ Write-Host "Installing Playwright browsers..." -ForegroundColor Cyan
 Start-Process -FilePath $VenvPython -ArgumentList "-m playwright install" -Wait -NoNewWindow
 
 # 7. Launch App
-Write-Host "Starting Brahma AI..." -ForegroundColor Green
+Write-Host "Starting Rahul AI..." -ForegroundColor Green
 if (Test-Path $VenvPythonW) {
     Start-Process -FilePath $VenvPythonW -ArgumentList "main.py --startup" -WorkingDirectory $WorkingDir
 } else {

@@ -32,9 +32,9 @@ from smart_home import SmartHomeService
 BG = "#020305"
 PANEL = "#07080b"
 PANEL_2 = "#0d0f14"
-ACCENT = "#ffb300"
-ACCENT_SOFT = "rgba(255, 179, 0,0.12)"
-ACCENT_LINE = "rgba(255, 179, 0,0.22)"
+ACCENT = "#22d3ee"
+ACCENT_SOFT = "rgba(34, 211, 238,0.12)"
+ACCENT_LINE = "rgba(34, 211, 238,0.22)"
 TEXT = "#ffffff"
 TEXT_MED = "rgba(255,255,255,0.85)"
 TEXT_DIM = "rgba(255,255,255,0.65)"
@@ -63,7 +63,7 @@ def _panel_style(border_alpha: int = 34) -> str:
     return (
         "QFrame { "
         "background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgba(16, 18, 26, 0.75), stop:1 rgba(8, 10, 15, 0.88)); "
-        f"border: 1.5px solid rgba(255, 179, 0, {alpha:.3f}); "
+        f"border: 1.5px solid rgba(34, 211, 238, {alpha:.3f}); "
         "border-radius: 18px; "
         "}"
     )
@@ -73,7 +73,7 @@ def _soft_button_style() -> str:
     return (
         f"QPushButton {{ background: rgba(255,255,255,0.03); color: {TEXT}; "
         "border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 0 12px; }}"
-        f"QPushButton:hover {{ border: 1px solid {ACCENT}; background: rgba(255, 179, 0,0.08); }}"
+        f"QPushButton:hover {{ border: 1px solid {ACCENT}; background: rgba(34, 211, 238,0.08); }}"
     )
 
 
@@ -245,8 +245,8 @@ class AddDeviceDialog(QDialog):
                     border-radius: 14px;
                 }
                 QFrame:hover {
-                    background: rgba(255, 179, 0, 0.04);
-                    border: 1px solid rgba(255, 179, 0, 0.3);
+                    background: rgba(34, 211, 238, 0.04);
+                    border: 1px solid rgba(34, 211, 238, 0.3);
                 }
             """)
             
@@ -339,7 +339,7 @@ class AddDeviceDialog(QDialog):
             if is_selected:
                 card.setStyleSheet(f"""
                     QFrame {{
-                        background: rgba(255, 179, 0, 0.08);
+                        background: rgba(34, 211, 238, 0.08);
                         border: 1.5px solid {ACCENT};
                         border-radius: 14px;
                     }}
@@ -352,8 +352,8 @@ class AddDeviceDialog(QDialog):
                         border-radius: 14px;
                     }
                     QFrame:hover {
-                        background: rgba(255, 179, 0, 0.04);
-                        border: 1px solid rgba(255, 179, 0, 0.3);
+                        background: rgba(34, 211, 238, 0.04);
+                        border: 1px solid rgba(34, 211, 238, 0.3);
                     }
                 """)
         self._build_auth_form()
@@ -533,7 +533,7 @@ class _DeviceTile(ClickableFrame):
                 border-radius: 2px;
             }}
             QSlider::sub-page:horizontal {{
-                background: #ffb300;
+                background: #22d3ee;
                 border-radius: 2px;
             }}
             QSlider::handle:horizontal {{
@@ -573,7 +573,7 @@ class _DeviceTile(ClickableFrame):
                 seg.setFixedHeight(5)
                 seg.setFixedWidth(24)
                 if is_on and s <= current_speed:
-                    seg.setStyleSheet("background: #ffb300; border-radius: 2.5px;")
+                    seg.setStyleSheet("background: #22d3ee; border-radius: 2.5px;")
                 else:
                     seg.setStyleSheet("background: rgba(255, 255, 255, 0.15); border-radius: 2.5px;")
                 seg_row.addWidget(seg)
@@ -670,7 +670,7 @@ class _DeviceTile(ClickableFrame):
                 }}
                 QFrame#DeviceTileFrame:hover {{
                     background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #141726, stop:1 #0a0b12);
-                    border: 1px solid rgba(255, 179, 0, 0.35);
+                    border: 1px solid rgba(34, 211, 238, 0.35);
                 }}
             """)
             
@@ -689,7 +689,7 @@ class _DeviceTile(ClickableFrame):
             self.select_requested.emit(str(device_id))
 
 
-class BrahmaHomePage(QWidget):
+class RahulHomePage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self._service = SmartHomeService()
@@ -701,8 +701,8 @@ class BrahmaHomePage(QWidget):
         self._activity_items: list[dict[str, Any]] = []
         self._device_columns_cached = 0
 
-        self.setObjectName("BrahmaHomePageModern")
-        self.setStyleSheet(f"QWidget#BrahmaHomePageModern {{ background: transparent; }} QScrollArea {{ background: transparent; border: none; }}")
+        self.setObjectName("RahulHomePageModern")
+        self.setStyleSheet(f"QWidget#RahulHomePageModern {{ background: transparent; }} QScrollArea {{ background: transparent; border: none; }}")
 
         root = QHBoxLayout(self)
         root.setContentsMargins(18, 16, 18, 16)
@@ -740,12 +740,12 @@ class BrahmaHomePage(QWidget):
         self._right_container.setStyleSheet(f"""
             QFrame#ActivityPanel {{
                 background: rgba(10, 10, 10, 0.4);
-                border: 1px solid rgba(255, 179, 0, 0.4);
+                border: 1px solid rgba(34, 211, 238, 0.4);
                 border-radius: 16px;
             }}
             QFrame#ActivityPanel:hover {{
-                border: 1px solid rgba(255, 179, 0, 0.9);
-                background: rgba(255, 179, 0, 0.08);
+                border: 1px solid rgba(34, 211, 238, 0.9);
+                background: rgba(34, 211, 238, 0.08);
             }}
         """)
         self._right_lay = QVBoxLayout(self._right_container)
@@ -813,10 +813,10 @@ class BrahmaHomePage(QWidget):
         row = QHBoxLayout()
         row.setSpacing(12)
         text = QVBoxLayout()
-        title = QLabel("BRAHMA ECHO HOME")
+        title = QLabel("RAHUL ECHO HOME")
         title.setFont(QFont("Segoe UI", 24, QFont.Weight.Black))
         title.setStyleSheet(f"color: {TEXT}; letter-spacing: 1px;")
-        subtitle = QLabel("Control your smart home with Brahma Echo.")
+        subtitle = QLabel("Control your smart home with Rahul AI.")
         subtitle.setFont(QFont("Segoe UI", 11))
         subtitle.setStyleSheet(f"color: {TEXT_DIM};")
         text.addWidget(title)
@@ -829,7 +829,7 @@ class BrahmaHomePage(QWidget):
         self._voice_button = QPushButton("▮▮")
         self._voice_button.setFixedSize(48, 48)
         self._voice_button.setCursor(Qt.CursorShape.PointingHandCursor)
-        self._voice_button.setStyleSheet(f"QPushButton {{ background: rgba(255, 255, 255, 0.02); color: {TEXT}; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; font-size: 16px; }} QPushButton:hover {{ border: 1px solid {ACCENT}; background: rgba(255, 179, 0,0.08); }}")
+        self._voice_button.setStyleSheet(f"QPushButton {{ background: rgba(255, 255, 255, 0.02); color: {TEXT}; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; font-size: 16px; }} QPushButton:hover {{ border: 1px solid {ACCENT}; background: rgba(34, 211, 238,0.08); }}")
         self._voice_button.clicked.connect(self._toggle_voice_mode)
         row.addWidget(self._voice_button)
         lay.addLayout(row)
@@ -844,7 +844,7 @@ class BrahmaHomePage(QWidget):
         self._mic_orb.setFixedSize(86, 86)
         self._mic_orb.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._mic_orb.setFont(QFont("Segoe UI", 26))
-        self._mic_orb.setStyleSheet(f"QLabel {{ background: rgba(255, 179, 0,0.12); color: {TEXT}; border: 2px solid rgba(255, 179, 0,0.55); border-radius: 43px; }}")
+        self._mic_orb.setStyleSheet(f"QLabel {{ background: rgba(34, 211, 238,0.12); color: {TEXT}; border: 2px solid rgba(34, 211, 238,0.55); border-radius: 43px; }}")
         vf.addWidget(self._mic_orb)
         middle = QVBoxLayout()
         self._voice_state_lbl = QLabel("Listening...")
@@ -861,7 +861,7 @@ class BrahmaHomePage(QWidget):
         for _ in range(36):
             bar = QFrame()
             bar.setFixedSize(4, 12)
-            bar.setStyleSheet("background: rgba(255, 179, 0,0.20); border-radius: 2px;")
+            bar.setStyleSheet("background: rgba(34, 211, 238,0.20); border-radius: 2px;")
             self._wave.addWidget(bar, alignment=Qt.AlignmentFlag.AlignVCenter)
             self._wave_bars.append(bar)
         vf.addLayout(self._wave)
@@ -877,7 +877,7 @@ class BrahmaHomePage(QWidget):
         self._add_btn = QPushButton("+ Add Device")
         self._add_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         self._add_btn.setFixedHeight(38)
-        self._add_btn.setStyleSheet(f"QPushButton {{ background: transparent; color: {TEXT}; border: 1px solid {ACCENT}; border-radius: 12px; padding: 0 14px; }} QPushButton:hover {{ background: rgba(255, 179, 0,0.10); }}")
+        self._add_btn.setStyleSheet(f"QPushButton {{ background: transparent; color: {TEXT}; border: 1px solid {ACCENT}; border-radius: 12px; padding: 0 14px; }} QPushButton:hover {{ background: rgba(34, 211, 238,0.10); }}")
         self._add_btn.clicked.connect(self._open_add_device)
         header.addWidget(self._add_btn)
         lay.addLayout(header)
@@ -887,12 +887,12 @@ class BrahmaHomePage(QWidget):
         self._empty_state.setStyleSheet(f"""
             QFrame#EmptyStateCard {{
                 background: rgba(10, 10, 10, 0.4);
-                border: 1px solid rgba(255, 179, 0, 0.4);
+                border: 1px solid rgba(34, 211, 238, 0.4);
                 border-radius: 16px;
             }}
             QFrame#EmptyStateCard:hover {{
-                border: 1px solid rgba(255, 179, 0, 0.9);
-                background: rgba(255, 179, 0, 0.08);
+                border: 1px solid rgba(34, 211, 238, 0.9);
+                background: rgba(34, 211, 238, 0.08);
             }}
         """)
         empty_lay = QVBoxLayout(self._empty_state)
@@ -908,7 +908,7 @@ class BrahmaHomePage(QWidget):
         self._empty_add_btn = QPushButton("Add Device")
         self._empty_add_btn.setFixedSize(150, 42)
         self._empty_add_btn.setCursor(Qt.CursorShape.PointingHandCursor)
-        self._empty_add_btn.setStyleSheet(f"QPushButton {{ background: rgba(255, 179, 0,0.12); color: {TEXT}; border: 1px solid {ACCENT}; border-radius: 12px; }} QPushButton:hover {{ background: rgba(255, 179, 0,0.18); }}")
+        self._empty_add_btn.setStyleSheet(f"QPushButton {{ background: rgba(34, 211, 238,0.12); color: {TEXT}; border: 1px solid {ACCENT}; border-radius: 12px; }} QPushButton:hover {{ background: rgba(34, 211, 238,0.18); }}")
         self._empty_add_btn.clicked.connect(self._open_add_device)
         empty_lay.addWidget(self._empty_add_btn, alignment=Qt.AlignmentFlag.AlignHCenter)
         lay.addWidget(self._empty_state)
@@ -932,12 +932,12 @@ class BrahmaHomePage(QWidget):
         frame.setStyleSheet(f"""
             QFrame#VoiceControlCard {{
                 background: rgba(10, 10, 10, 0.4);
-                border: 1px solid rgba(255, 179, 0, 0.4);
+                border: 1px solid rgba(34, 211, 238, 0.4);
                 border-radius: 16px;
             }}
             QFrame#VoiceControlCard:hover {{
-                border: 1px solid rgba(255, 179, 0, 0.9);
-                background: rgba(255, 179, 0, 0.08);
+                border: 1px solid rgba(34, 211, 238, 0.9);
+                background: rgba(34, 211, 238, 0.08);
             }}
         """)
         lay = QHBoxLayout(frame)
@@ -958,7 +958,7 @@ class BrahmaHomePage(QWidget):
         lbl.setFont(QFont("Segoe UI", 9))
         lbl.setStyleSheet(f"color: {TEXT_DIM};")
         
-        word = QLabel("Brahma Echo")
+        word = QLabel("Rahul AI")
         word.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
         word.setStyleSheet(f"color: {ACCENT};")
         
@@ -973,14 +973,14 @@ class BrahmaHomePage(QWidget):
         mic_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         mic_btn.setStyleSheet(f"""
             QPushButton {{
-                background: rgba(255, 179, 0,0.08);
+                background: rgba(34, 211, 238,0.08);
                 color: {TEXT};
-                border: 1px solid rgba(255, 179, 0,0.3);
+                border: 1px solid rgba(34, 211, 238,0.3);
                 border-radius: 19px;
                 font-size: 14px;
             }}
             QPushButton:hover {{
-                background: rgba(255, 179, 0,0.18);
+                background: rgba(34, 211, 238,0.18);
                 border: 1px solid {ACCENT};
             }}
         """)
@@ -1176,7 +1176,7 @@ class BrahmaHomePage(QWidget):
                     padding: 0 8px;
                 }}
                 QPushButton:hover {{
-                    background: rgba(255, 179, 0, 0.08);
+                    background: rgba(34, 211, 238, 0.08);
                     border: 1px solid {ACCENT};
                     color: #ffffff;
                 }}
@@ -1228,7 +1228,7 @@ class BrahmaHomePage(QWidget):
             status_html = (
                 "<div style='line-height: 1.3;'>"
                 "<span style='color: rgba(255,255,255,0.4); font-size: 10px; font-weight: bold;'>SYSTEM</span><br/>"
-                "<span style='color: #ffcc00; font-size: 12px; font-weight: bold;'>●</span> "
+                "<span style='color: #22d3ee; font-size: 12px; font-weight: bold;'>●</span> "
                 "<span style='color: #ffffff; font-size: 11px; font-weight: bold;'>Ready</span>"
                 "</div>"
             )
@@ -1369,14 +1369,14 @@ class BrahmaHomePage(QWidget):
             for idx, bar in enumerate(self._wave_bars):
                 height = 8 + int(18 * abs(((self._voice_phase + idx) % 14) - 7) / 7)
                 bar.setFixedHeight(max(8, min(40, height)))
-                bar.setStyleSheet(f"background: {'rgba(255, 179, 0,0.55)' if self._voice_state in ('Listening', 'Executing') else 'rgba(255,255,255,0.18)'}; border-radius: 2px;")
+                bar.setStyleSheet(f"background: {'rgba(34, 211, 238,0.55)' if self._voice_state in ('Listening', 'Executing') else 'rgba(255,255,255,0.18)'}; border-radius: 2px;")
         if hasattr(self, "_voice_small_bars") and self._voice_small_bars:
             for idx, bar in enumerate(self._voice_small_bars):
                 height = 6 + int(10 * abs(((self._voice_phase + idx) % 10) - 5) / 5)
                 bar.setFixedHeight(max(6, min(24, height)))
-                bar.setStyleSheet(f"background: {'rgba(255, 179, 0,0.35)' if self._voice_state in ('Listening', 'Executing') else 'rgba(255,255,255,0.15)'}; border-radius: 2px;")
+                bar.setStyleSheet(f"background: {'rgba(34, 211, 238,0.35)' if self._voice_state in ('Listening', 'Executing') else 'rgba(255,255,255,0.15)'}; border-radius: 2px;")
         if hasattr(self, "_voice_cmd_lbl") and self._voice_cmd_lbl:
-            self._voice_cmd_lbl.setText({"Idle": '"Brahma Echo"', "Listening": '"Turn bedroom fan to speed 4"', "Thinking": '"Understanding..."', "Executing": '"Applying command..."', "Completed": '"Done"'}.get(self._voice_state, '"Brahma Echo"'))
+            self._voice_cmd_lbl.setText({"Idle": '"Rahul AI"', "Listening": '"Turn bedroom fan to speed 4"', "Thinking": '"Understanding..."', "Executing": '"Applying command..."', "Completed": '"Done"'}.get(self._voice_state, '"Rahul AI"'))
         if hasattr(self, "_mic_orb") and self._mic_orb:
             self._mic_orb.setText("🎙️" if self._voice_state in ("Listening", "Executing") else "🎙️")
 

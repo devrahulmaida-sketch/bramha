@@ -1,7 +1,7 @@
 import os
 import re
 
-file_path = r"d:\TiTech Prabha Solution\Brahma Echo\Brahma Echo\Brahma Echo-AI---Lite-main\Brahma Echo-AI---Lite-main\ui.py"
+file_path = r"d:\TiTech Prabha Solution\Rahul AI\Rahul AI\Rahul AI-AI---Lite-main\Rahul AI-AI---Lite-main\ui.py"
 with open(file_path, "r", encoding="utf-8") as f:
     text = f.read()
 
@@ -131,23 +131,23 @@ new_setup_overlay = """class SetupOverlay(QWidget):
         gem_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         gem_btn.setStyleSheet(f\"\"\"
             QPushButton {{
-                background: rgba(255, 170, 48, 0.05);
-                border: 1px solid rgba(255, 170, 48, 0.2);
+                background: rgba(34, 211, 238, 0.05);
+                border: 1px solid rgba(34, 211, 238, 0.2);
                 border-radius: 16px;
-                color: #ffaa30;
+                color: #22d3ee;
                 text-align: left;
                 padding: 20px;
             }}
             QPushButton:hover {{
-                background: rgba(255, 170, 48, 0.15);
-                border: 1px solid rgba(255, 170, 48, 0.6);
+                background: rgba(34, 211, 238, 0.15);
+                border: 1px solid rgba(34, 211, 238, 0.6);
             }}
         \"\"\")
         
         glay = QVBoxLayout(gem_btn)
         gt = QLabel("Google Gemini")
         gt.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
-        gt.setStyleSheet("color: #ffaa30; background: transparent; border: none;")
+        gt.setStyleSheet("color: #22d3ee; background: transparent; border: none;")
         glay.addWidget(gt)
         gs = QLabel("★★★★★ Recommended\\nPrimary Intelligence")
         gs.setFont(QFont("Segoe UI", 10))
@@ -156,7 +156,7 @@ new_setup_overlay = """class SetupOverlay(QWidget):
         glay.addStretch()
         gc = QLabel("Connect →")
         gc.setFont(QFont("Segoe UI", 11, QFont.Weight.Bold))
-        gc.setStyleSheet("color: #ffaa30; background: transparent; border: none;")
+        gc.setStyleSheet("color: #22d3ee; background: transparent; border: none;")
         glay.addWidget(gc)
         
         gem_btn.clicked.connect(self._goto_stage3)
@@ -219,7 +219,7 @@ new_setup_overlay = """class SetupOverlay(QWidget):
         self._s3_box.setStyleSheet(\"\"\"
             QFrame {
                 background: rgba(10, 12, 18, 200);
-                border: 1px solid rgba(255, 170, 48, 0.3);
+                border: 1px solid rgba(34, 211, 238, 0.3);
                 border-radius: 20px;
             }
         \"\"\")
@@ -228,7 +228,7 @@ new_setup_overlay = """class SetupOverlay(QWidget):
         
         self._s3_title = QLabel("Google Gemini")
         self._s3_title.setFont(QFont("Segoe UI", 18, QFont.Weight.Bold))
-        self._s3_title.setStyleSheet("color: #ffaa30; background: transparent; border: none;")
+        self._s3_title.setStyleSheet("color: #22d3ee; background: transparent; border: none;")
         blay.addWidget(self._s3_title)
         
         self._s3_sub = QLabel("Paste your Neural Key")
@@ -245,18 +245,18 @@ new_setup_overlay = """class SetupOverlay(QWidget):
         self._key_input.setFixedHeight(54)
         self._key_input.setStyleSheet(f\"\"\"
             QLineEdit {{
-                background: rgba(255, 170, 48, 0.05); color: #ffaa30;
-                border: 1px solid rgba(255, 170, 48, 0.4); border-radius: 12px; padding: 0 16px;
+                background: rgba(34, 211, 238, 0.05); color: #22d3ee;
+                border: 1px solid rgba(34, 211, 238, 0.4); border-radius: 12px; padding: 0 16px;
                 letter-spacing: 2px;
             }}
-            QLineEdit:focus {{ border: 1px solid #ffaa30; }}
+            QLineEdit:focus {{ border: 1px solid #22d3ee; }}
         \"\"\")
         self._key_input.textChanged.connect(self._on_key_pasted)
         blay.addWidget(self._key_input)
         
         self._s3_status = QLabel("")
         self._s3_status.setFont(QFont("Consolas", 11))
-        self._s3_status.setStyleSheet(f"color: #ffaa30; background: transparent; border: none;")
+        self._s3_status.setStyleSheet(f"color: #22d3ee; background: transparent; border: none;")
         blay.addWidget(self._s3_status)
         
         blay.addStretch()
@@ -291,31 +291,31 @@ new_setup_overlay = """class SetupOverlay(QWidget):
             self._auth_timer.stop()
             self._s3_status.setText("✓ Identity Verified\\nGemini 2.5 Pro\\nLatency 87 ms\\nReady")
             self._s3_status.setStyleSheet(f"color: {C.GREEN}; background: transparent; border: none;")
-            self._key_input.setStyleSheet(self._key_input.styleSheet().replace("rgba(255, 170, 48, 0.4)", C.GREEN).replace("#ffaa30", C.GREEN))
+            self._key_input.setStyleSheet(self._key_input.styleSheet().replace("rgba(34, 211, 238, 0.4)", C.GREEN).replace("#22d3ee", C.GREEN))
             self._s3_title.setStyleSheet(f"color: {C.GREEN}; background: transparent; border: none;")
             
-            QTimer.singleShot(1500, self._intro_brahma)
+            QTimer.singleShot(1500, self._intro_rahul)
             
-    def _intro_brahma(self):
+    def _intro_rahul(self):
         self._s3_box.hide()
-        self._intro_lbl = QLabel("Identity confirmed.\\n\\nHello.\\n\\nI'm Brahma Echo.\\n\\nReady whenever you are.")
+        self._intro_lbl = QLabel("Identity confirmed.\\n\\nHello.\\n\\nI'm Rahul AI.\\n\\nReady whenever you are.")
         self._intro_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._intro_lbl.setFont(QFont("Segoe UI", 16))
         self._intro_lbl.setStyleSheet("color: #ffffff; background: transparent; border: none;")
         
-        self._launch_btn = QPushButton("Launch Brahma Echo →")
+        self._launch_btn = QPushButton("Launch Rahul AI →")
         self._launch_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         self._launch_btn.setFixedSize(240, 50)
         self._launch_btn.setFont(QFont("Segoe UI", 12, QFont.Weight.Bold))
         self._launch_btn.setStyleSheet(f\"\"\"
             QPushButton {{
-                background: rgba(255, 170, 48, 0.15);
-                color: #ffaa30;
-                border: 1px solid #ffaa30;
+                background: rgba(34, 211, 238, 0.15);
+                color: #22d3ee;
+                border: 1px solid #22d3ee;
                 border-radius: 25px;
             }}
             QPushButton:hover {{
-                background: rgba(255, 170, 48, 0.3);
+                background: rgba(34, 211, 238, 0.3);
             }}
         \"\"\")
         self._launch_btn.clicked.connect(self._start_ignition)
@@ -345,7 +345,7 @@ new_setup_overlay = """class SetupOverlay(QWidget):
         self._s4_title = QLabel("Establishing Neural Link...")
         self._s4_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._s4_title.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
-        self._s4_title.setStyleSheet("color: #ffaa30; background: transparent; border: none;")
+        self._s4_title.setStyleSheet("color: #22d3ee; background: transparent; border: none;")
         lay.addWidget(self._s4_title)
         lay.addSpacing(30)
         

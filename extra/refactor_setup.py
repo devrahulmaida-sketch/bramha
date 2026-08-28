@@ -1,7 +1,7 @@
 import os
 import re
 
-file_path = r"d:\TiTech Prabha Solution\Brahma Echo\Brahma Echo\Brahma Echo-AI---Lite-main\Brahma Echo-AI---Lite-main\ui.py"
+file_path = r"d:\TiTech Prabha Solution\Rahul AI\Rahul AI\Rahul AI-AI---Lite-main\Rahul AI-AI---Lite-main\ui.py"
 with open(file_path, "r", encoding="utf-8") as f:
     text = f.read()
 
@@ -77,14 +77,14 @@ new_setup_overlay = """class SetupOverlay(QWidget):
         if primary:
             btn.setStyleSheet(f\"\"\"
                 QPushButton {{
-                    background: rgba(255, 170, 48, 0.1);
-                    color: #ffaa30;
-                    border: 1px solid rgba(255, 170, 48, 0.3);
+                    background: rgba(34, 211, 238, 0.1);
+                    color: #22d3ee;
+                    border: 1px solid rgba(34, 211, 238, 0.3);
                     border-radius: 12px;
                 }}
                 QPushButton:hover {{
-                    background: rgba(255, 170, 48, 0.15);
-                    border: 1px solid rgba(255, 170, 48, 0.6);
+                    background: rgba(34, 211, 238, 0.15);
+                    border: 1px solid rgba(34, 211, 238, 0.6);
                 }}
             \"\"\")
         else:
@@ -103,7 +103,7 @@ new_setup_overlay = """class SetupOverlay(QWidget):
         page = QWidget()
         lay = QVBoxLayout(page)
         lay.setContentsMargins(0, 0, 0, 0)
-        lay.addWidget(self._header("BRAHMA ECHO", "First Time Setup\\nConnect your preferred AI provider to begin."))
+        lay.addWidget(self._header("RAHUL ECHO", "First Time Setup\\nConnect your preferred AI provider to begin."))
         lay.addStretch()
         
         info = QLabel("Estimated time\\n20 seconds")
@@ -132,13 +132,13 @@ new_setup_overlay = """class SetupOverlay(QWidget):
                 background: rgba(255,255,255,0.03); color: {C.WHITE};
                 border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 0 16px;
             }}
-            QLineEdit:focus {{ border: 1px solid rgba(255, 170, 48, 0.4); }}
+            QLineEdit:focus {{ border: 1px solid rgba(34, 211, 238, 0.4); }}
         \"\"\")
         self._key_input.setText((self._defaults.get("gemini_api_key") or "").strip())
         lay.addWidget(self._key_input)
         
         hint_lay = QHBoxLayout()
-        hint = QLabel("Need one? <a href='https://aistudio.google.com/app/apikey' style='color:#ffaa30; text-decoration:none;'>Get API Key →</a>")
+        hint = QLabel("Need one? <a href='https://aistudio.google.com/app/apikey' style='color:#22d3ee; text-decoration:none;'>Get API Key →</a>")
         hint.setFont(QFont("Segoe UI", 9))
         hint.setOpenExternalLinks(True)
         hint.setStyleSheet("background: transparent; border: none;")
@@ -201,7 +201,7 @@ new_setup_overlay = """class SetupOverlay(QWidget):
                 background: rgba(255,255,255,0.03); color: {C.WHITE};
                 border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 0 16px;
             }}
-            QLineEdit:focus {{ border: 1px solid rgba(255, 170, 48, 0.4); }}
+            QLineEdit:focus {{ border: 1px solid rgba(34, 211, 238, 0.4); }}
         \"\"\")
         self._or_input.setText((self._defaults.get("openrouter_api_key") or "").strip())
         lay.addWidget(self._or_input)
@@ -238,8 +238,8 @@ new_setup_overlay = """class SetupOverlay(QWidget):
             if k == key:
                 btn.setStyleSheet(f\"\"\"
                     QPushButton {{
-                        background: rgba(255, 170, 48, 0.12); color: #ffaa30;
-                        border: 1px solid rgba(255, 170, 48, 0.4); border-radius: 10px; font-weight: bold;
+                        background: rgba(34, 211, 238, 0.12); color: #22d3ee;
+                        border: 1px solid rgba(34, 211, 238, 0.4); border-radius: 10px; font-weight: bold;
                     }}
                 \"\"\")
             else:
@@ -260,7 +260,7 @@ new_setup_overlay = """class SetupOverlay(QWidget):
         self._boot_lbl = QLabel("██████████░░  Loading Core")
         self._boot_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._boot_lbl.setFont(QFont("Consolas", 14))
-        self._boot_lbl.setStyleSheet(f"color: #ffaa30; background: transparent; border: none;")
+        self._boot_lbl.setStyleSheet(f"color: #22d3ee; background: transparent; border: none;")
         lay.addWidget(self._boot_lbl)
         lay.addStretch()
         self.stack.addWidget(page)
@@ -287,7 +287,7 @@ new_setup_overlay = """class SetupOverlay(QWidget):
             "████████████  Verifying Gemini",
             "████████████  Initializing Memory",
             "████████████  Starting Voice Engine",
-            "████████████  Launching Brahma Echo"
+            "████████████  Launching Rahul AI"
         ]
         self._boot_step += 1
         if self._boot_step < len(steps):
@@ -301,7 +301,7 @@ new_setup_overlay = """class SetupOverlay(QWidget):
 pattern_setup = r"class SetupOverlay\(QWidget\):.*?def _submit\(self\):.*?self\.done\.emit\(key, or_key, self\._sel_os\)"
 text = re.sub(pattern_setup, new_setup_overlay, text, flags=re.DOTALL)
 
-# Update _show_setup in BrahmaUI to make overlay full screen
+# Update _show_setup in RahulUI to make overlay full screen
 new_show_setup = """    def _show_setup(self, defaults: dict | None = None):
         if self._overlay:
             self._overlay.hide()

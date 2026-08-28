@@ -23,8 +23,8 @@ default_identity = {
         "about": ""
     },
     "assistant": {
-        "name": "Brahma",
-        "application_name": "Brahma Echo",
+        "name": "Rahul",
+        "application_name": "Rahul AI",
         "title": "Personal AI Assistant"
     },
     "behavior": {

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Rahul Connect</string>
+    <string name="accessibility_service_description">Rahul Connect accessibility bridge for device control setup.</string>
+</resources>

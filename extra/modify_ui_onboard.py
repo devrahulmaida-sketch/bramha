@@ -39,14 +39,14 @@ if "_build_stage_identity" not in content:
         form_lay.setSpacing(16)
         
         lbl_ast = QLabel("Assistant Name")
-        lbl_ast.setStyleSheet("color: #ffaa30;")
+        lbl_ast.setStyleSheet("color: #22d3ee;")
         self._inp_ast = QLineEdit(identity.get_assistant_name())
         self._inp_ast.setStyleSheet("background: rgba(255,255,255,0.1); color: #fff; padding: 6px; border-radius: 4px;")
         form_lay.addWidget(lbl_ast, 0, 0)
         form_lay.addWidget(self._inp_ast, 0, 1)
 
         lbl_app = QLabel("Application Name")
-        lbl_app.setStyleSheet("color: #ffaa30;")
+        lbl_app.setStyleSheet("color: #22d3ee;")
         self._inp_app = QLineEdit(identity.get_application_name())
         self._inp_app.setStyleSheet("background: rgba(255,255,255,0.1); color: #fff; padding: 6px; border-radius: 4px;")
         form_lay.addWidget(lbl_app, 1, 0)
@@ -59,7 +59,7 @@ if "_build_stage_identity" not in content:
 
         btn = QPushButton("CONTINUE →")
         btn.setFixedSize(160, 40)
-        btn.setStyleSheet("background: rgba(255, 170, 48, 0.2); color: #ffaa30; border: 1px solid #ffaa30; border-radius: 20px;")
+        btn.setStyleSheet("background: rgba(34, 211, 238, 0.2); color: #22d3ee; border: 1px solid #22d3ee; border-radius: 20px;")
         btn.clicked.connect(self._save_identity_and_next)
         lay.addWidget(btn, 0, Qt.AlignmentFlag.AlignCenter)
         
@@ -67,8 +67,8 @@ if "_build_stage_identity" not in content:
         self._stack.addWidget(page)
 
     def _save_identity_and_next(self):
-        identity.set_assistant_name(self._inp_ast.text().strip() or "Brahma")
-        identity.set_application_name(self._inp_app.text().strip() or "Brahma Echo")
+        identity.set_assistant_name(self._inp_ast.text().strip() or "Rahul")
+        identity.set_application_name(self._inp_app.text().strip() or "Rahul AI")
         self._stack.setCurrentIndex(2)
 
     # ── STAGE 1.2: Owner Profile ────────────────────────────────
@@ -96,14 +96,14 @@ if "_build_stage_identity" not in content:
         form_lay.setSpacing(16)
         
         lbl_own = QLabel("Your Name")
-        lbl_own.setStyleSheet("color: #ffaa30;")
+        lbl_own.setStyleSheet("color: #22d3ee;")
         self._inp_own = QLineEdit(identity.get_owner_name())
         self._inp_own.setStyleSheet("background: rgba(255,255,255,0.1); color: #fff; padding: 6px; border-radius: 4px;")
         form_lay.addWidget(lbl_own, 0, 0)
         form_lay.addWidget(self._inp_own, 0, 1)
 
         lbl_role = QLabel("Your Role")
-        lbl_role.setStyleSheet("color: #ffaa30;")
+        lbl_role.setStyleSheet("color: #22d3ee;")
         self._inp_role = QLineEdit(identity.get_owner_role())
         self._inp_role.setPlaceholderText("e.g. Student, Developer")
         self._inp_role.setStyleSheet("background: rgba(255,255,255,0.1); color: #fff; padding: 6px; border-radius: 4px;")
@@ -117,7 +117,7 @@ if "_build_stage_identity" not in content:
 
         btn = QPushButton("CONTINUE →")
         btn.setFixedSize(160, 40)
-        btn.setStyleSheet("background: rgba(255, 170, 48, 0.2); color: #ffaa30; border: 1px solid #ffaa30; border-radius: 20px;")
+        btn.setStyleSheet("background: rgba(34, 211, 238, 0.2); color: #22d3ee; border: 1px solid #22d3ee; border-radius: 20px;")
         btn.clicked.connect(self._save_owner_and_next)
         lay.addWidget(btn, 0, Qt.AlignmentFlag.AlignCenter)
         
@@ -153,7 +153,7 @@ if "_build_stage_identity" not in content:
         
         sub = QLabel("Custom Instructions (Optional)")
         sub.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        sub.setStyleSheet("color: #ffaa30; margin-top: 10px;")
+        sub.setStyleSheet("color: #22d3ee; margin-top: 10px;")
         lay.addWidget(sub)
         
         self._inp_custom = QTextEdit(identity.get_custom_instructions())
@@ -164,7 +164,7 @@ if "_build_stage_identity" not in content:
         lay.addSpacing(20)
         btn = QPushButton("CONTINUE →")
         btn.setFixedSize(160, 40)
-        btn.setStyleSheet("background: rgba(255, 170, 48, 0.2); color: #ffaa30; border: 1px solid #ffaa30; border-radius: 20px;")
+        btn.setStyleSheet("background: rgba(34, 211, 238, 0.2); color: #22d3ee; border: 1px solid #22d3ee; border-radius: 20px;")
         btn.clicked.connect(self._save_behavior_and_next)
         lay.addWidget(btn, 0, Qt.AlignmentFlag.AlignCenter)
         
@@ -193,7 +193,7 @@ if "_build_stage_identity" not in content:
         
         btn_personal = QPushButton("THIS IS MY PERSONAL COMPUTER")
         btn_personal.setFixedSize(300, 50)
-        btn_personal.setStyleSheet("background: rgba(255, 170, 48, 0.1); color: #ffaa30; border: 1px solid #ffaa30; border-radius: 8px;")
+        btn_personal.setStyleSheet("background: rgba(34, 211, 238, 0.1); color: #22d3ee; border: 1px solid #22d3ee; border-radius: 8px;")
         btn_personal.clicked.connect(lambda: self._save_shared_and_next(False))
         lay.addWidget(btn_personal, 0, Qt.AlignmentFlag.AlignCenter)
         

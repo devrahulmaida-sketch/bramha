@@ -1,7 +1,7 @@
 import os
 import re
 
-file_path = r"d:\TiTech Prabha Solution\Brahma Echo\Brahma Echo\Brahma Echo-AI---Lite-main\Brahma Echo-AI---Lite-main\ui.py"
+file_path = r"d:\TiTech Prabha Solution\Rahul AI\Rahul AI\Rahul AI-AI---Lite-main\Rahul AI-AI---Lite-main\ui.py"
 with open(file_path, "r", encoding="utf-8") as f:
     text = f.read()
 
@@ -16,7 +16,7 @@ text = re.sub(
 # Update QPushButton hover
 text = re.sub(
     r"QPushButton:hover\s*\{\{\s*background: rgba\(255,\s*170,\s*48,0\.10\);\s*border: 1px solid \{C\.PRI\};\s*\}\}",
-    "QPushButton:hover {{\n                background: rgba(255, 170, 48, 0.10);\n                border: 1px solid rgba(255, 170, 48, 0.3);\n            }}",
+    "QPushButton:hover {{\n                background: rgba(34, 211, 238, 0.10);\n                border: 1px solid rgba(34, 211, 238, 0.3);\n            }}",
     text,
     flags=re.MULTILINE
 )
