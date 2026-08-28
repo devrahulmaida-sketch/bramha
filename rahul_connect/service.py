@@ -36,6 +36,14 @@ class RahulConnectService:
     def on_chat_message(self, cb):
         self.gateway.on_chat_message = cb
 
+    @property
+    def on_camera_frame(self):
+        return self.gateway.on_camera_frame
+
+    @on_camera_frame.setter
+    def on_camera_frame(self, cb):
+        self.gateway.on_camera_frame = cb
+
     _loop: asyncio.AbstractEventLoop | None = field(init=False, default=None)
 
     def broadcast_chat_message(self, event: dict):

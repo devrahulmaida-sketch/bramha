@@ -119,6 +119,7 @@ data class CommandResult(
 }
 
 object RahulProtocol {
+    const val CAMERA_FRAME = "camera_frame"
     const val HELLO = "hello"
     const val PAIR_REQUEST = "pair_request"
     const val PAIR_APPROVED = "pair_approved"

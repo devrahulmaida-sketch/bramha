@@ -52,6 +52,9 @@ Designed for advanced desktop productivity, Rahul AI delivers:
 - Secure local configuration with file-based credential storage
 - Device pairing and remote routing through Rahul Connect
 - **Android DEX control** — mirror the phone screen (scrcpy), launch/stop apps, read notifications, control media, tap/swipe/type remotely, screenshots, APK installs, wireless ADB (inspired by Android DEX)
+- **Phone camera hologram** — mirror the phone's camera into a desktop holographic viewer with hand-gesture zoom/move (pinch = zoom, open palm = pan)
+- **Phone voice commands** — speak to Rahul AI from the paired phone (mic button in Rahul Connect chat)
+- **Identity core** — Rahul AI always knows its name and creator (Rahul sir) and its full capability list, enforced at runtime in three redundant layers
 
 ## Features
 
@@ -215,3 +218,15 @@ Voice examples: *"mirror my phone"*, *"open WhatsApp on my phone"*, *"read my ph
    `{"adb_path": "C:\\platform-tools\\adb.exe", "scrcpy_path": "C:\\scrcpy\\scrcpy.exe"}`
 5. Main window now opens **maximized** by default — press `F11` for fullscreen, `Esc` to exit
    (or set `"window_mode": "fullscreen" | "maximized" | "normal"` in `config/app_settings.json`).
+
+## Phone Camera Hologram (voice)
+
+Say *"show my phone camera"* — the paired phone streams its camera over Rahul Connect
+and a holographic viewer opens on the PC (cyan scanline render, HUD frame, FPS/zoom readout).
+
+- **Pinch** (thumb + index, seen by the phone camera) → zoom 1.0×–3.5×
+- **Open palm position** → pan / move the view
+- Buttons: Hologram on/off, Zoom +/−, Reset, Stop · Voice: *"phone camera hologram off"*
+
+Requires: latest Rahul Connect app (camera permission) + `config/models/hand_landmarker.task`
+(auto-downloaded on first use). Voice from the phone: tap 🎙 in the Rahul Connect chat.

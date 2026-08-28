@@ -113,6 +113,8 @@ def _required_capabilities_for_action(action: str) -> list[str]:
         "get_device_info": ["device_info"],
         "mouse_move": ["mouse"],
         "keyboard_type": ["keyboard"],
+        "start_camera_stream": ["camera_stream"],
+        "stop_camera_stream": ["camera_stream"],
     }.get(action, [])
 
 

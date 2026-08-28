@@ -14,12 +14,12 @@ class IdentityService:
         self.config_file = get_base_dir() / "config" / "identity.json"
         self.data: Dict[str, Any] = {
             "owner": {
-                "name": "",
-                "preferred_name": "",
-                "role": "",
+                "name": "Rahul",
+                "preferred_name": "Rahul sir",
+                "role": "Creator of Rahul AI (currently a student)",
                 "location": "",
                 "interests": [],
-                "about": ""
+                "about": "Creator and owner of Rahul AI."
             },
             "assistant": {
                 "name": "Rahul",
@@ -63,6 +63,21 @@ class IdentityService:
             print(f"Error saving identity config: {e}")
 
     # Assistant methods
+
+    def ensure_core_identity(self) -> None:
+        """Integrity clamp — the Rahul AI identity can never be renamed or erased via config."""
+        try:
+            assistant = self.data.setdefault("assistant", {})
+            assistant["name"] = "Rahul"
+            assistant["application_name"] = "Rahul AI"
+            assistant["title"] = assistant.get("title") or "Personal AI Assistant"
+            owner = self.data.setdefault("owner", {})
+            if not str(owner.get("name") or "").strip():
+                owner["name"] = "Rahul"
+            self.save()
+        except Exception:
+            pass
+
     def get_assistant_name(self) -> str:
         return self.data["assistant"].get("name", "Rahul")
         

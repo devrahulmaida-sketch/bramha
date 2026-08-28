@@ -21,6 +21,8 @@ class DeviceCommandHandler(private val context: Context) {
         return when (action.lowercase()) {
             "get_device_info" -> getDeviceInfo()
             "get_battery" -> getBattery()
+            "start_camera_stream" -> startCameraStream()
+            "stop_camera_stream" -> stopCameraStream()
             "flashlight_on" -> flashlight(true)
             "flashlight_off" -> flashlight(false)
             "launch_app" -> launchApp(parameters)
@@ -294,6 +296,33 @@ class DeviceCommandHandler(private val context: Context) {
             }
         } catch (e: Exception) {
             CommandResult(false, errorCode = "DELETE_ERROR", error = e.message ?: "Failed to delete file.")
+        }
+    }
+
+    private fun startCameraStream(): CommandResult {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            return CommandResult(
+                false,
+                errorCode = "CAMERA_PERMISSION_REQUIRED",
+                error = "Grant the camera permission in the Rahul Connect app to stream the camera.",
+            )
+        }
+        return try {
+            val intent = Intent(context, CameraStreamService::class.java).setAction(CameraStreamService.ACTION_START)
+            context.startForegroundService(intent)
+            CommandResult(true, data = mapOf("streaming" to true, "fps" to 10))
+        } catch (t: Throwable) {
+            CommandResult(false, errorCode = "CAMERA_STREAM_FAILED", error = t.message ?: "Could not start camera stream.")
+        }
+    }
+
+    private fun stopCameraStream(): CommandResult {
+        return try {
+            val intent = Intent(context, CameraStreamService::class.java).setAction(CameraStreamService.ACTION_STOP)
+            context.startService(intent)
+            CommandResult(true, data = mapOf("streaming" to false))
+        } catch (t: Throwable) {
+            CommandResult(false, errorCode = "CAMERA_STREAM_FAILED", error = t.message ?: "Could not stop camera stream.")
         }
     }
 }

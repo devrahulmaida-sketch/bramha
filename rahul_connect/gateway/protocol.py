@@ -21,6 +21,7 @@ class ProtocolTypes:
     PONG = "pong"
     FILE_TRANSFER = "file_transfer"
     SCREEN_CAPTURE = "screen_capture"
+    CAMERA_FRAME = "camera_frame"
     CHAT_MESSAGE = "chat_message"
 
 

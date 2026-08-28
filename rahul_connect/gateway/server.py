@@ -108,6 +108,7 @@ class RahulGateway:
         self._log: list[dict[str, Any]] = []
         self._pending_requests: dict[str, dict[str, Any]] = {}
         self.on_chat_message = None
+        self.on_camera_frame = None
         self.app = self._build_app()
 
     def is_running(self) -> bool:
@@ -500,6 +501,15 @@ class RahulGateway:
                     if msg_type == ProtocolTypes.CHAT_MESSAGE:
                         if self.on_chat_message and payload.get("text"):
                             self.on_chat_message(payload.get("text"))
+                        continue
+
+                    if msg_type == ProtocolTypes.CAMERA_FRAME:
+                        frame_b64 = str(payload.get("jpeg_b64") or "")
+                        if self.on_camera_frame and frame_b64:
+                            try:
+                                self.on_camera_frame(device_id or "", frame_b64)
+                            except Exception:
+                                pass
                         continue
 
                     if msg_type == ProtocolTypes.DEVICE_OFFLINE:

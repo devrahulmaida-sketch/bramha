@@ -23,6 +23,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import android.app.Activity
+import android.content.Intent
+import android.speech.RecognizerIntent
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import com.rahul.connect.core.AgentStateStore
 import com.rahul.connect.core.ChatMessage
 import kotlinx.coroutines.launch
@@ -40,6 +45,28 @@ fun ChatScreen(
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     var inputText by remember { mutableStateOf("") }
+    var listening by remember { mutableStateOf(false) }
+
+    // ── Voice command from the phone: speech -> text -> same chat pipeline ──
+    val speechLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        listening = false
+        val spoken = result.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.firstOrNull()
+        if (!spoken.isNullOrBlank()) {
+            onSendMessage(spoken)
+        }
+    }
+    val startVoiceInput = {
+        try {
+            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+                putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+                putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to Rahul AI…")
+            }
+            listening = true
+            speechLauncher.launch(intent)
+        } catch (e: Exception) {
+            listening = false
+        }
+    }
 
     LaunchedEffect(chatHistory.size) {
         if (chatHistory.isNotEmpty()) {
@@ -129,6 +156,18 @@ fun ChatScreen(
                 Spacer(modifier = Modifier.width(8.dp))
                 
                 IconButton(
+                    onClick = { startVoiceInput() },
+                    modifier = Modifier
+                        .size(48.dp)
+                        .clip(CircleShape)
+                        .background(if (listening) MaterialTheme.colorScheme.primary else Color(0xFF262626))
+                ) {
+                    Text("🎙", fontSize = 18.sp)
+                }
+                
+                Spacer(modifier = Modifier.width(8.dp))
+                
+                IconButton(
                     onClick = {
                         if (inputText.isNotBlank()) {
                             onSendMessage(inputText)
@@ -172,7 +211,7 @@ fun ChatMessageBubble(message: ChatMessage) {
                     .border(1.dp, Color.White.copy(alpha = 0.2f), CircleShape),
                 contentAlignment = Alignment.Center
             ) {
-                Text("B", color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Text("R", color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
             Spacer(modifier = Modifier.width(8.dp))
         }

@@ -2,6 +2,7 @@ package com.rahul.connect.network
 
 import android.content.Context
 import android.os.SystemClock
+import com.rahul.connect.camera.CameraStreamBus
 import com.rahul.connect.commands.DeviceCommandHandler
 import com.rahul.connect.core.AgentStateStore
 import com.rahul.connect.core.RahulProtocol
@@ -95,6 +96,11 @@ class RahulWebSocketClient(
         socket?.send(json.toString())
     }
 
+    fun sendCameraFrame(jpegBase64: String) {
+        val payload = JSONObject().put("jpeg_b64", jpegBase64)
+        send(RahulProtocol.envelope(RahulProtocol.CAMERA_FRAME, payload))
+    }
+
     private fun batterySnapshot(): Pair<Int, Boolean> {
         val battery = commandHandler.handle("get_battery", emptyMap()).data
         val percentage = (battery["percentage"] as? Int) ?: -1
@@ -123,6 +129,7 @@ class RahulWebSocketClient(
                 "apps",
                 "open_url",
                 "wifi_state",
+                "camera_stream",
             ),
         )
     }
@@ -196,6 +203,7 @@ class RahulWebSocketClient(
 
     private inner class RahulSocketListener : WebSocketListener() {
         override fun onOpen(webSocket: WebSocket, response: okhttp3.Response) {
+            CameraStreamBus.frameSender = { b64 -> sendCameraFrame(b64) }
             socket = webSocket
             reconnectAttempt = 0
             AgentStateStore.setConnectionState(ConnectionState.CONNECTING)
@@ -251,6 +259,7 @@ class RahulWebSocketClient(
         }
 
         override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
+            CameraStreamBus.frameSender = null
             socket = null
             AgentStateStore.addLog("Socket closed: $code $reason")
             AgentStateStore.setConnectionState(ConnectionState.DISCONNECTED)
@@ -259,6 +268,7 @@ class RahulWebSocketClient(
         }
 
         override fun onFailure(webSocket: WebSocket, t: Throwable, response: okhttp3.Response?) {
+            CameraStreamBus.frameSender = null
             socket = null
             AgentStateStore.addLog("Socket failure: ${t.message}")
             AgentStateStore.setConnectionState(ConnectionState.DISCONNECTED)

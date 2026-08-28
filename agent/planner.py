@@ -49,6 +49,10 @@ android_dex
   ip: string (for connect)
   control: string (media: play_pause | next | previous | volume_up | volume_down | mute)
 
+phone_camera
+  action: "start" | "stop" | "hologram_on" | "hologram_off" | "status" (required)
+  target: string (optional device name)
+
 browser_control
   action: "go_to" | "search" | "click" | "type" | "scroll" | "get_text" | "press" | "close" (required)
   url: string (for go_to)

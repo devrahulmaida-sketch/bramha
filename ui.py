@@ -2551,23 +2551,36 @@ class ConversationFeed(QScrollArea):
         lay = QVBoxLayout(frame)
         lay.setContentsMargins(14, 12, 14, 12)
         lay.setSpacing(10)
-        title = QLabel("Try asking Rahul AI")
-        title.setFont(QFont("Segoe UI", 9, QFont.Weight.Bold))
-        title.setStyleSheet("color: #ffffff; background: transparent;")
-        subtitle = QLabel("Create a presentation, analyze a screen, build a website, organize files, or run browser automation.")
+        title = QLabel("Rahul AI")
+        title.setFont(QFont("Segoe UI", 13, QFont.Weight.Bold))
+        title.setStyleSheet("color: #22d3ee; background: transparent; letter-spacing: 1px;")
+        credit = QLabel("Created by Rahul sir")
+        credit.setFont(QFont("Segoe UI", 8, QFont.Weight.StyleItalic))
+        credit.setStyleSheet("color: rgba(34, 211, 238, 0.72); background: transparent;")
+        subtitle = QLabel(
+            "Voice or type — I can control apps, files, web & browser automation, office documents, "
+            "websites, code, screen vision, messages, your Android phone (mirror, apps, notifications, "
+            "camera hologram with gesture zoom), smart home, reminders and more."
+        )
         subtitle.setWordWrap(True)
         subtitle.setStyleSheet("color: rgba(255,255,255,0.64); background: transparent;")
         lay.addWidget(title)
+        lay.addWidget(credit)
         lay.addWidget(subtitle)
         grid = QGridLayout()
         grid.setSpacing(8)
         self._empty_widget_buttons = []
         for idx, suggestion in enumerate([
+            "What all can you do?",
             "Create Presentation",
             "Analyze Screen",
             "Build Website",
+            "Mirror my phone",
+            "Read my phone notifications",
+            "Show my phone camera hologram",
             "Organize Downloads",
             "Browser Automation",
+            "System Status",
         ]):
             btn = QPushButton(suggestion)
             btn.setCursor(Qt.CursorShape.PointingHandCursor)
