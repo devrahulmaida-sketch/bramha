@@ -51,6 +51,7 @@ Designed for advanced desktop productivity, Rahul AI delivers:
 - Modular action architecture for clean extensibility and automation
 - Secure local configuration with file-based credential storage
 - Device pairing and remote routing through Rahul Connect
+- **Android DEX control** — mirror the phone screen (scrcpy), launch/stop apps, read notifications, control media, tap/swipe/type remotely, screenshots, APK installs, wireless ADB (inspired by Android DEX)
 
 ## Features
 
@@ -200,3 +201,17 @@ This is an open source project anyone can fork, copy, modify and take for there 
 - Rahul Maida
 
 > Preserve attribution and keep credentials secure when building on top of Rahul AI.
+
+## Android DEX Control Setup (Optional)
+
+Voice examples: *"mirror my phone"*, *"open WhatsApp on my phone"*, *"read my phone notifications"*,
+*"pause music on my phone"*, *"screenshot my phone"*, *"connect to my phone on wi-fi"*.
+
+1. Install [Android platform-tools](https://developer.android.com/tools/releases/platform-tools) (ADB).
+2. For screen mirroring install [scrcpy](https://github.com/Genymobile/scrcpy).
+3. Enable **USB debugging** (Developer options) and connect the phone via USB — or go wireless:
+   say *"connect to my phone on 192.168.x.x"*.
+4. Optional path overrides in `config/app_settings.json`:
+   `{"adb_path": "C:\\platform-tools\\adb.exe", "scrcpy_path": "C:\\scrcpy\\scrcpy.exe"}`
+5. Main window now opens **maximized** by default — press `F11` for fullscreen, `Esc` to exit
+   (or set `"window_mode": "fullscreen" | "maximized" | "normal"` in `config/app_settings.json`).

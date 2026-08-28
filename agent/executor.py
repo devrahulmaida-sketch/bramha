@@ -183,6 +183,9 @@ def _call_tool(tool: str, parameters: dict, speak: Callable | None) -> str:
     elif tool == "game_updater":
         from actions.game_updater import game_updater
         return game_updater(parameters=parameters, player=None, speak=speak) or "Done."
+    elif tool in ("android_dex", "android", "dex", "phone_control"):
+        from actions.android_dex import android_dex
+        return android_dex(parameters=parameters, player=None, speak=speak) or "Done."
     elif tool == "browser_control":
         from actions.browser_control import browser_control
         return browser_control(parameters=parameters, player=None) or "Done."

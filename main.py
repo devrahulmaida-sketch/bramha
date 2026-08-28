@@ -1188,6 +1188,43 @@ TOOL_DECLARATIONS = [
             "required": []
         }
     },
+    {
+        "name": "android_dex",
+        "description": (
+            "Controls a connected Android phone (Android DEX). Use when the user mentions their phone, "
+            "Android device, mirroring the phone screen, opening/listing phone apps, phone notifications, "
+            "phone media (play/pause/next), taking a phone screenshot, tapping/swiping on the phone, "
+            "installing an APK, or connecting to the phone over Wi-Fi. Requires the phone connected via USB "
+            "(debugging on) or previously paired over Wi-Fi."
+        ),
+        "parameters": {
+            "type": "OBJECT",
+            "properties": {
+                "action": {
+                    "type": "STRING",
+                    "description": (
+                        "devices | connect | apps | launch | stop_app | install | mirror | stop_mirror | "
+                        "screenshot | media | notifications | input | status"
+                    )
+                },
+                "app_name":  {"type": "STRING", "description": "App name or package (launch/stop_app/apps query)"},
+                "ip":        {"type": "STRING", "description": "Phone Wi-Fi IP for connect, e.g. 192.168.0.105:5555"},
+                "mode":      {"type": "STRING", "description": "mirror: window (default) | fullscreen | view"},
+                "record":    {"type": "STRING", "description": "mirror: optional .mp4 path to record the screen"},
+                "control":   {"type": "STRING", "description": "media: play_pause | next | previous | volume_up | volume_down | mute"},
+                "input_type": {"type": "STRING", "description": "input: tap | swipe | type | key"},
+                "x": {"type": "NUMBER", "description": "input tap/swipe start X"},
+                "y": {"type": "NUMBER", "description": "input tap/swipe start Y"},
+                "x2": {"type": "NUMBER", "description": "input swipe end X"},
+                "y2": {"type": "NUMBER", "description": "input swipe end Y"},
+                "text": {"type": "STRING", "description": "input type: text to type on the phone"},
+                "key": {"type": "STRING", "description": "input key: back | home | recents | wake | enter | up | down"},
+                "path":      {"type": "STRING", "description": "install: path to the .apk file"},
+                "target":    {"type": "STRING", "description": "Optional device serial when several phones are connected"}
+            },
+            "required": ["action"]
+        }
+    },
 ]
 
 
@@ -2439,6 +2476,11 @@ class RahulLive:
 
             elif name == "game_updater":
                 r = await loop.run_in_executor(None, lambda: game_updater(parameters=args, player=self.ui, speak=self.speak))
+                result = r or "Done."
+
+            elif name in ("android_dex", "android", "dex", "phone_control"):
+                from actions.android_dex import android_dex
+                r = await loop.run_in_executor(None, lambda: android_dex(parameters=args, player=self.ui, speak=self.speak))
                 result = r or "Done."
 
             elif name == "flight_finder":

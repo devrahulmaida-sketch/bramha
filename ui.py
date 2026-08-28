@@ -6760,6 +6760,22 @@ class MainWindow(QMainWindow):
     minimized = pyqtSignal()
     _screen_capture_sig = pyqtSignal()
 
+    def keyPressEvent(self, event):
+        # F11 = toggle fullscreen, Esc = leave fullscreen (Android-DEX style shortcuts)
+        try:
+            if event.key() == Qt.Key.Key_F11:
+                if self.isFullScreen():
+                    self.showMaximized()
+                else:
+                    self.showFullScreen()
+                return
+            if event.key() == Qt.Key.Key_Escape and self.isFullScreen():
+                self.showMaximized()
+                return
+        except Exception:
+            pass
+        super().keyPressEvent(event)
+
     def __init__(self, face_path: str):
         super().__init__()
         self.setWindowFlag(Qt.WindowType.Tool, False)
@@ -10378,10 +10394,23 @@ class RahulUI:
         self._win.set_rahul_connect_service(service)
 
     def show_main(self):
+        # Window mode: maximized (default) | fullscreen | normal -> config/app_settings.json "window_mode"
         try:
-            self._win.showNormal()
+            mode = str(self._load_app_settings().get("window_mode", "maximized")).lower()
         except Exception:
-            self._win.show()
+            mode = "maximized"
+        try:
+            if mode == "fullscreen":
+                self._win.showFullScreen()
+            elif mode == "normal":
+                self._win.showNormal()
+            else:
+                self._win.showMaximized()
+        except Exception:
+            try:
+                self._win.showMaximized()
+            except Exception:
+                self._win.show()
         self._win.raise_()
         self._win.activateWindow()
         if self._launcher.isVisible():
@@ -11867,10 +11896,23 @@ class RahulUI:
         self._win.set_rahul_connect_service(service)
 
     def show_main(self):
+        # Window mode: maximized (default) | fullscreen | normal -> config/app_settings.json "window_mode"
         try:
-            self._win.showNormal()
+            mode = str(self._load_app_settings().get("window_mode", "maximized")).lower()
         except Exception:
-            self._win.show()
+            mode = "maximized"
+        try:
+            if mode == "fullscreen":
+                self._win.showFullScreen()
+            elif mode == "normal":
+                self._win.showNormal()
+            else:
+                self._win.showMaximized()
+        except Exception:
+            try:
+                self._win.showMaximized()
+            except Exception:
+                self._win.show()
         self._win.raise_()
         self._win.activateWindow()
         if self._launcher.isVisible():
