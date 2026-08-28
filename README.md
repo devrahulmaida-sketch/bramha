@@ -97,7 +97,7 @@ Designed for advanced desktop productivity, Brahma Echo delivers:
 
 ```powershell
 git clone https://github.com/devrahulmaida-sketch/bramha.git
-cd "Brahma AI - Lite"
+cd bramha
 ```
 
 ### 2. Create and activate a virtual environment
