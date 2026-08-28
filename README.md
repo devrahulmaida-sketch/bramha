@@ -96,7 +96,7 @@ Designed for advanced desktop productivity, Brahma Echo delivers:
 ### 1. Clone the repository
 
 ```powershell
-git clone https://github.com/titechprabhasolutions/Brahma-AI---Lite.git
+git clone https://github.com/devrahulmaida-sketch/bramha.git
 cd "Brahma AI - Lite"
 ```
 
@@ -189,16 +189,14 @@ Supported hooks:
 - Restart the app after changing config or adding plugins.
 - Review `config/app_settings.json` to tune voice, UI, and automation behavior.
 
-## Community & Support
 
-- Discord: https://discord.gg/gEYmJKKtq3
 
 ## License
 
-This project is published under a custom source-available license. See `LICENSE` for details.
+This is an open source project anyone can fork, copy, modify and take for there personal or professional use no need to mention my name or give credit to me.
 
 ## Maintainer
 
-- Suryaansh Tiwari
+- Rahul Maida
 
 > Preserve attribution and keep credentials secure when building on top of Brahma Echo.
