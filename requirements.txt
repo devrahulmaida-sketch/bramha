@@ -6,19 +6,17 @@ requests
 python-kasa
 beautifulsoup4
 duckduckgo-search
-playwright          
+playwright
 pyautogui
 pyperclip
-pygetwindow       
+pygetwindow
 opencv-python
 numpy
 mediapipe
 mss
-Pillow
 psutil
 comtypes
-pycaw               
-win10toast          
+pycaw
 send2trash
 youtube-transcript-api
 pywinauto
@@ -35,3 +33,13 @@ qrcode[pil]
 python-multipart
 PyQt6
 edge-tts
+# --- used by actions/file_processor.py ---
+PyPDF2
+pdfplumber
+pandas
+pydub
+# --- used by actions/system_monitor.py (Windows) ---
+pynvml
+wmi
+# --- used by rahul_connect gateway discovery ---
+zeroconf

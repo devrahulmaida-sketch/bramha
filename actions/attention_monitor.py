@@ -313,10 +313,6 @@ _current_audio_path = None
 _speech_sink: Callable[[str], None] | None = None
 
 
-def set_speech_sink(sink: Callable[[str], None] | None) -> None:
-    global _speech_sink
-    _speech_sink = sink
-
 def _cleanup_current_audio() -> None:
     global _current_player_alias, _current_audio_path
     if _current_player_alias is not None:

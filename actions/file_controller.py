@@ -314,65 +314,6 @@ def get_disk_usage(path: str = "home") -> str:
         return f"Could not get disk usage: {e}"
 
 
-def organize_desktop() -> str:
-    """
-    Organizes the desktop by grouping files into folders by type.
-    Creates folders: Images, Documents, Videos, Music, Archives, Others
-    """
-    try:
-        desktop = _get_desktop()
-        type_map = {
-            "Images":    [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp", ".svg", ".ico"],
-            "Documents": [".pdf", ".doc", ".docx", ".txt", ".xls", ".xlsx", ".ppt", ".pptx", ".csv"],
-            "Videos":    [".mp4", ".avi", ".mkv", ".mov", ".wmv", ".flv", ".webm"],
-            "Music":     [".mp3", ".wav", ".flac", ".aac", ".ogg", ".wma"],
-            "Archives":  [".zip", ".rar", ".7z", ".tar", ".gz"],
-            "Code":      [".py", ".js", ".html", ".css", ".json", ".xml", ".ts", ".cpp", ".java"],
-        }
-
-        moved    = []
-        skipped  = []
-
-        for item in desktop.iterdir():
-
-            if item.is_dir() or item.name.startswith("."):
-                continue
-
-            ext        = item.suffix.lower()
-            target_dir = None
-
-            for folder, extensions in type_map.items():
-                if ext in extensions:
-                    target_dir = desktop / folder
-                    break
-
-            if target_dir is None:
-                target_dir = desktop / "Others"
-
-            target_dir.mkdir(exist_ok=True)
-            new_path = target_dir / item.name
-
-            if new_path.exists():
-                skipped.append(item.name)
-                continue
-
-            shutil.move(str(item), str(new_path))
-            moved.append(f"{item.name} → {target_dir.name}/")
-
-        result = f"Desktop organized. {len(moved)} files moved."
-        if moved:
-            result += "\n" + "\n".join(moved[:10])
-            if len(moved) > 10:
-                result += f"\n... and {len(moved)-10} more."
-        if skipped:
-            result += f"\n{len(skipped)} files skipped (already exist)."
-
-        return result
-
-    except Exception as e:
-        return f"Could not organize desktop: {e}"
-
-
 def _organize_directory(target_path: str, mode: str = "by_type") -> str:
     """Organizes files in a directory by type or by date."""
     try:

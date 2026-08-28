@@ -50,8 +50,17 @@ Return ONLY valid JSON:
 
 
 def _get_api_key() -> str:
-    with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)["gemini_api_key"]
+    try:
+        with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
+            key = str(json.load(f).get("gemini_api_key", "") or "").strip()
+    except Exception:
+        key = ""
+    if not key:
+        raise RuntimeError(
+            'Gemini API key missing — add "gemini_api_key" to config/api_keys.json '
+            "(free key: https://aistudio.google.com/app/apikey)"
+        )
+    return key
 
 
 def analyze_error(

@@ -8,7 +8,7 @@ from datetime import datetime
 
 class ProactiveEngine:
     """
-    Decides when JARVIS should speak unprompted and builds a context-rich prompt.
+    Decides when Rahul should speak unprompted and builds a context-rich prompt.
 
     Improvements over 1.0:
       - Time-of-day awareness  (morning / afternoon / evening / night)

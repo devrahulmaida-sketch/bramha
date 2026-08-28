@@ -15,17 +15,7 @@ def _load_discord_module():
         import discord as mod
         return mod
     except Exception:
-        try:
-            subprocess.run(
-                [sys.executable, "-m", "pip", "install", "discord.py"],
-                check=True,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
-            import discord as mod
-            return mod
-        except Exception:
-            return None
+        return None
 
 
 discord = _load_discord_module()

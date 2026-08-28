@@ -313,14 +313,29 @@ def _act_stop_mirror() -> str:
     return f"Stopped {stopped} mirror window(s)."
 
 
+def _adb_bytes(args: list[str], serial: str | None = None, timeout: int = 30) -> tuple[bool, bytes]:
+    """Binary-safe ADB runner (no text decoding — for screencap/exec-out)."""
+    adb = _adb_path()
+    if not adb:
+        return False, b""
+    cmd = [adb] + (["-s", serial] if serial else []) + args
+    try:
+        r = subprocess.run(
+            cmd, capture_output=True, timeout=timeout,
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        )
+        return r.returncode == 0, r.stdout
+    except Exception:
+        return False, b""
+
+
 def _act_screenshot(serial: str) -> str:
-    ok, out = _adb(["exec-out", "screencap", "-p"], serial=serial, timeout=30)
-    if not ok:
-        # text-mode fallback: some setups mangle exec-out
-        return f"Screenshot failed: {out.strip()[:200]}"
+    ok, data = _adb_bytes(["exec-out", "screencap", "-p"], serial=serial)
+    if not ok or not data or not data.startswith(b"\x89PNG"):
+        return "Screenshot failed (device returned no image)."
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     path = OUTPUT_DIR / f"screenshot_{time.strftime('%Y%m%d_%H%M%S')}.png"
-    path.write_bytes(out.encode("latin-1", errors="ignore") if isinstance(out, str) else out)
+    path.write_bytes(data)
     return f"Screenshot saved: {path}"
 
 

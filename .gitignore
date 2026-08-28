@@ -47,3 +47,6 @@ dist/
 *.pyz
 *.zip
 *.whl
+
+# Rahul Connect runtime device registry
+config/rahul_connect/devices.json

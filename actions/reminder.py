@@ -38,7 +38,7 @@ def reminder(
             return "That time is already in the past."
 
         task_name    = f"MARKReminder_{target_dt.strftime('%Y%m%d_%H%M')}"
-        safe_message = message.replace('"', '').replace("'", "").strip()[:200]
+        safe_message = message.replace('"', '').replace("'", "").replace("\\", "").strip()[:200]
 
         python_exe = sys.executable
         if python_exe.lower().endswith("python.exe"):
@@ -74,7 +74,7 @@ try:
 except Exception:
     try:
         import subprocess
-        subprocess.run(["msg", "*", "/TIME:30", "{safe_message}"], shell=True)
+        subprocess.run(["msg", "*", "/TIME:30", "{safe_message}"])
     except Exception:
         pass
 

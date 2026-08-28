@@ -93,8 +93,17 @@ LIVE_CONNECT_TIMEOUT = 12
 
 
 def _get_api_key() -> str:
-    with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)["gemini_api_key"]
+    try:
+        with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
+            key = str(json.load(f).get("gemini_api_key", "") or "").strip()
+    except Exception:
+        key = ""
+    if not key:
+        raise RuntimeError(
+            'Gemini API key missing — add "gemini_api_key" to config/api_keys.json '
+            "(free key: https://aistudio.google.com/app/apikey)"
+        )
+    return key
 
 
 def _is_port_in_use(port: int, host: str = "127.0.0.1") -> bool:
@@ -1264,11 +1273,10 @@ class RahulLive:
         self.ui.on_remote_clicked = self._make_remote_key
         self._last_activity = time.monotonic()
         self._idle_prompts = [
-            "Hey, you there?",
-            "Yo, get alive.",
-            "How may I help, bro?",
-            "Need anything?",
-            "I'm here if you want me.",
+            "Sir, I'm here if you need anything.",
+            "Standing by, sir. Let me know if you need help.",
+            "Sir, anything I can assist with?",
+            "I'm available whenever you're ready, sir.",
         ]
         self._idle_speech_thread = threading.Thread(target=self._idle_speech_loop, daemon=True)
         self._idle_speech_thread.start()
@@ -2939,7 +2947,13 @@ def main():
         except KeyboardInterrupt:
             print("\n🔴 Shutting down...")
 
+    _runner_started = {"ok": False}
+
     def start_runner():
+        # guard: starting twice would create two RahulLive sessions (double audio/Gemini)
+        if _runner_started["ok"]:
+            return
+        _runner_started["ok"] = True
         threading.Thread(target=runner, daemon=True).start()
 
     start_runner()

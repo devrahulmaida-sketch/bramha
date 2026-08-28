@@ -1,6 +1,14 @@
 import importlib
 import io
 
+import pytest
+
+pytest.importorskip("cv2", reason="opencv not available in this environment")
+try:
+    import sounddevice  # noqa: F401  (needs PortAudio — present on end-user systems)
+except Exception:
+    pytest.skip("sounddevice/PortAudio not available in this environment", allow_module_level=True)
+
 from PIL import Image
 
 

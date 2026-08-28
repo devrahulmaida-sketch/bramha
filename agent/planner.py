@@ -43,6 +43,12 @@ game_updater
   app_id: string (optional)
   shutdown_when_done: boolean (optional)
 
+android_dex
+  action: "devices" | "connect" | "apps" | "launch" | "stop_app" | "install" | "mirror" | "stop_mirror" | "screenshot" | "media" | "notifications" | "input" | "status" (required)
+  app_name: string (for launch/stop_app)
+  ip: string (for connect)
+  control: string (media: play_pause | next | previous | volume_up | volume_down | mute)
+
 browser_control
   action: "go_to" | "search" | "click" | "type" | "scroll" | "get_text" | "press" | "close" (required)
   url: string (for go_to)
@@ -213,8 +219,17 @@ OUTPUT — return ONLY valid JSON, no markdown, no explanation, no code blocks:
 
 
 def _get_api_key() -> str:
-    with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)["gemini_api_key"]
+    try:
+        with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
+            key = str(json.load(f).get("gemini_api_key", "") or "").strip()
+    except Exception:
+        key = ""
+    if not key:
+        raise RuntimeError(
+            'Gemini API key missing — add "gemini_api_key" to config/api_keys.json '
+            "(free key: https://aistudio.google.com/app/apikey)"
+        )
+    return key
 
 
 def _looks_like_website_goal(goal: str) -> bool:
